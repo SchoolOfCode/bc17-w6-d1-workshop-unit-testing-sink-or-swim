@@ -7,7 +7,7 @@
   "scripts": {
     
       
-        "test": "vitest"
+        "test1": "vitest"
       }
     
   
