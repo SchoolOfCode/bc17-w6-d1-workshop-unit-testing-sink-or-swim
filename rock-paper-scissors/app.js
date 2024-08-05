@@ -1,3 +1,4 @@
+//setting RPS variable's
 export const ROCK = "rock";
 export const PAPER = "paper";const SCISSORS = "scissors";
                       export const DRAW = "draw", WIN = "win", LOSS = "loss";
