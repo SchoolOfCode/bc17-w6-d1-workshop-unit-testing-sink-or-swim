@@ -1,5 +1,5 @@
 import {test, expect} from 'vitest';
-import {calculateRoundResult, DRAW, PAPER, ROCK, WIN} from './app.js';
+import {calculateRoundResult,DRAW, PAPER, ROCK, WIN, SCISSORS, LOSE} from './app.js';
 
 
 test('calculateRoundResult', () => {

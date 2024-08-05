@@ -4,5 +4,7 @@
   "devDependencies": {
     "vitest": "^2.0.5"
   },
-  "scripts": {"test:RPS" : "vitest"}
+  "scripts": {
+    "test:RPS": "vitest"
+  }
 }
