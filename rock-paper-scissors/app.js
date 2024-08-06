@@ -43,7 +43,7 @@ export function calculateRoundResult( playerMove, computerMove){
         outcome: DRAW,
         message: "Both players chose scissors. It's a draw.",
       };}
-    if (playerMove === "Paper" && computerMove === SCISSORS) {
+    if (playerMove === PAPER && computerMove === SCISSORS) {
         return {
           outcome: LOSS,
           message: "Player chose paper and computer chose scissors. Computer wins.",
@@ -53,22 +53,36 @@ return {
 outcome: LOSS,
 message: "Player chose scissors and computer chose rock. Computer wins.",
 };}
-if (playerMove === "scissors" && computerMove === "paper") {
-return {outcome: WIN,message: "Player chose paper and computer chose paper. Player wins.",};}
-if (playerMove=== "scissors" && computerMove === "scissors") {return {outcome: DRAW, message: "Both players chose scissors. It's a draw.",
+if (playerMove === SCISSORS && computerMove === PAPER) {
+return {outcome: WIN,message: "Player chose SCISSORS and computer chose paper. Player wins.",};}
+if (playerMove=== SCISSORS && computerMove === SCISSORS) {
+  return {outcome: DRAW, message: "Both players chose scissors. It's a draw.",
 };}
+if (playerMove === ROCK && computerMove === PAPER) {
+return {outcome: LOSS,message: "Player chose rock and computer chose paper. Computer wins.",};}
+if (playerMove === PAPER && computerMove === PAPER) {
+return {outcome: DRAW,message: "Player chose paper and computer chose paper. It's a draw.",};}
+if (playerMove === ROCK && computerMove === SCISSORS) {
+return {outcome: WIN,message: "Player chose rock and computer chose scissors. Player wins.",};}
+if (playerMove === PAPER && computerMove === ROCK) {
+return {outcome: WIN,message: "Player chose paper and computer chose rock. Player wins.",};}
+
 function calculateRoundResult(playerMove, computerMove) {
   if (!playerMove || !computerMove) {
 throw new Error(`Invalid player move (${playerMove}) or computer move ${computerMove}`);
+
                 }
+return calculateRoundResult(playerMove, computerMove);
 }
-}
+return gameLoop(restartGame);
 // should randomly generate a computer move (one of the ROCK, PAPER or SCISSORS constants above)
 // each option should have an equal chance of being picked
-    export function generateComputerMove(
+   function generateComputerMove(
 
-) { const possibleMoves = [ROCK, PAPER, ROCK]; const randomIndex = Math.floor(Math.random() * 2);
-const randomMove = possibleMoves[randomIndex];return randomMove;
+) { const possibleMoves = [ROCK, PAPER, SCISSORS]; 
+    const randomIndex = Math.floor(Math.random() * 2);
+    const randomMove = possibleMoves[randomIndex];
+    return randomMove;
 }
 
 /**
@@ -97,14 +111,16 @@ const randomMove = possibleMoves[randomIndex];return randomMove;
                     *        drawCounter: 0,
                     *    }
             */
-export function calculateNewScores({ ...scores }, outcome) {
+function calculateNewScores({ ...scores }, outcome) {
 if (DRAW === outcome) {scores.drawCounter++;} else if (WIN === outcome) {scores.playerScoreCounter++;
 } else if (LOSS === outcome) {
 scores.computerScoreCounter++;
 }
-return scores;}
+return scores;
 
-function gameLoop() {
+}
+
+function gameLoop(restartGame) {
   let shouldPlayAgain;
   let scores = {playerScoreCounter: 0,computerScoreCounter: 0,drawCounter: 0,};
   do {
@@ -121,4 +137,4 @@ shouldPlayAgain = confirm(
   } while (shouldPlayAgain);
 
   alert("Thanks for playing!");
-}
+}}
